@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GroupForm</title>
+</head>
+<body>
+
+<form method="post"  th:action="@{/group-add}" th:object="${group}  ">
+    <input type="number" th:field="*{id}" style="display: none">
+    <input type="text" th:field="*{name}">
+    <button>Save</button>
+</form>
+</body>
+</html>

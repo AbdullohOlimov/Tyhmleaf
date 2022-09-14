@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5">Groups</h2>
+    <div class="row mt-5">
+<!--        <div class="col-12 ">-->
+            <table class="table table-hover col-8 offset-2">
+                <thead class="thead-dark ">
+                <tr>
+
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="group,iter: ${pageable.content}">
+                    <td th:text="${iter.index+1}"></td>
+                    <td th:text="${group.name}"></td>
+                    <td>
+                        <a th:href="@{'/student/'+${group.id}}"><button class="btn btn-link">View</button></a>
+                        <a th:href="@{'/group/'+${group.id}}" ><button class="btn btn-primary">Update</button></a>
+                        <a th:href="@{'/group-delete/'+${group.id}}"><button class="btn btn-outline-danger">Delete</button></a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <!--            <ol>-->
+            <!--                <li th:each="group: ${groups}">-->
+            <!--                    <a th:href="@{'/student/'+${group.id}}" th:text="${group.name}"></a>-->
+            <!--                </li>-->
+            <!--            </ol>-->
+<!--        </div>-->
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination" >
+            <li class="page-item" th:each="i: ${#numbers.sequence(0, pageable.page_count)}"><a class="page-link" th:href="@{'/?page='+${i}}" th:text="${i}"></a></li>
+
+        </ul>
+    </nav>
+    <a th:href="@{/group-add}">
+        <button class="btn btn-success">Add</button>
+    </a>
+</div>
+
+<script type="application/javascript">
+    console.log("hi")
+</script>
+</body>
+</html>
